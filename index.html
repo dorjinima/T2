@@ -328,6 +328,247 @@
             padding: 5px;
         }
 
+        /* ====== LOGIN/REGISTRATION MODAL ====== */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-modal.active {
+            display: flex;
+        }
+
+        .auth-container {
+            background: var(--white);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-header {
+            padding: 25px 30px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-radius: 12px 12px 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .auth-header h3 {
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .auth-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .auth-close:hover {
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .auth-body {
+            padding: 30px;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .auth-form-group {
+            margin-bottom: 25px;
+        }
+
+        .auth-form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .auth-form-input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .auth-form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 93, 87, 0.1);
+        }
+
+        .auth-form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .auth-form-check-input {
+            min-width: 18px;
+            height: 18px;
+        }
+
+        .auth-form-check-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .auth-error {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .auth-error.active {
+            display: block;
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray);
+        }
+
+        .auth-link a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow-hover);
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+            margin-top: 10px;
+        }
+
+        .user-dropdown.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .user-dropdown-item {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .user-dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .user-dropdown-item:hover {
+            background: var(--gray-light);
+            color: var(--primary);
+        }
+
         /* ====== HERO SECTION ====== */
         .hero {
             min-height: 100vh;
@@ -370,6 +611,151 @@
             gap: 20px;
             justify-content: center;
             animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        /* ====== VIDEO GALLERY SECTION ====== */
+        .video-gallery {
+            background-color: var(--gray-light);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .video-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.1);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .video-play-btn:hover {
+            background: var(--white);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-content {
+            padding: 25px;
+        }
+
+        .video-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        .video-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-modal-close:hover {
+            color: var(--secondary);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+
+        .video-player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
         }
 
         /* ====== TOUR THEMES SECTION ====== */
@@ -1548,6 +1934,10 @@
             .payment-methods {
                 grid-template-columns: 1fr;
             }
+
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -1572,7 +1962,8 @@
             }
 
             .destinations-grid,
-            .packages-grid {
+            .packages-grid,
+            .video-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1627,6 +2018,15 @@
             .step-number {
                 margin: 0;
             }
+
+            .auth-container {
+                width: 95%;
+                margin: 20px;
+            }
+
+            .user-menu {
+                gap: 10px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1671,6 +2071,19 @@
             .modal-close {
                 top: 20px;
                 right: 20px;
+            }
+
+            .auth-header {
+                padding: 20px;
+            }
+
+            .auth-close {
+                top: 20px;
+                right: 20px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1758,6 +2171,109 @@
 </head>
 
 <body>
+    <!-- Login/Registration Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h3 id="authTitle">Welcome to Druk Ojang</h3>
+                <p id="authSubtitle">Sign in to your account or create a new one</p>
+                <button class="auth-close" id="authClose">&times;</button>
+            </div>
+            <div class="auth-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="loginTab">Login</button>
+                    <button class="auth-tab" id="registerTab">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form class="auth-form active" id="loginForm">
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="loginEmail">Email Address *</label>
+                        <input type="email" class="auth-form-input" id="loginEmail" name="loginEmail" required>
+                        <div class="auth-error" id="loginEmailError">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="loginPassword">Password *</label>
+                        <input type="password" class="auth-form-input" id="loginPassword" name="loginPassword" required>
+                        <div class="auth-error" id="loginPasswordError">Password must be at least 6 characters</div>
+                    </div>
+
+                    <div class="auth-form-check">
+                        <input type="checkbox" class="auth-form-check-input" id="rememberMe" name="rememberMe">
+                        <label class="auth-form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+
+                    <div class="auth-link">
+                        <p>Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+                    </div>
+                </form>
+
+                <!-- Registration Form -->
+                <form class="auth-form" id="registerForm">
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="regName">Full Name *</label>
+                        <input type="text" class="auth-form-input" id="regName" name="regName" required>
+                        <div class="auth-error" id="regNameError">Please enter your full name</div>
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="regEmail">Email Address *</label>
+                        <input type="email" class="auth-form-input" id="regEmail" name="regEmail" required>
+                        <div class="auth-error" id="regEmailError">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="regPhone">Phone Number *</label>
+                        <input type="tel" class="auth-form-input" id="regPhone" name="regPhone" required>
+                        <div class="auth-error" id="regPhoneError">Please enter a valid phone number</div>
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="regPassword">Password *</label>
+                        <input type="password" class="auth-form-input" id="regPassword" name="regPassword" required>
+                        <div class="auth-error" id="regPasswordError">Password must be at least 8 characters with letters and numbers</div>
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-form-label" for="regConfirmPassword">Confirm Password *</label>
+                        <input type="password" class="auth-form-input" id="regConfirmPassword" name="regConfirmPassword" required>
+                        <div class="auth-error" id="regConfirmPasswordError">Passwords do not match</div>
+                    </div>
+
+                    <div class="auth-form-check">
+                        <input type="checkbox" class="auth-form-check-input" id="acceptTerms" name="acceptTerms" required>
+                        <label class="auth-form-check-label" for="acceptTerms">
+                            I agree to the <a href="#" style="color: var(--primary);">Terms & Conditions</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+
+                    <div class="auth-link">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" id="videoModalClose">&times;</button>
+            <div class="video-player" id="videoPlayer">
+                <!-- Video will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header" id="header">
         <div class="container header-container">
@@ -1772,12 +2288,44 @@
                 <a href="#why-us" class="nav-link">Services</a>
                 <a href="#destinations" class="nav-link">Destinations</a>
                 <a href="#packages" class="nav-link">Packages</a>
+                <a href="#video-gallery" class="nav-link">Video Gallery</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
 
-            <a href="#contact" class="btn btn-primary">
-                <i class="fas fa-calendar-alt"></i> Book Now
-            </a>
+            <div class="user-menu">
+                <div id="authButtons" style="display: flex; gap: 10px;">
+                    <a href="#" class="btn btn-outline" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="#" class="btn btn-primary" id="registerBtn">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+                
+                <div id="userProfile" style="display: none; position: relative;">
+                    <div class="user-avatar" id="userAvatar">
+                        <!-- Initial will be set by JavaScript -->
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="user-dropdown-item" id="userProfileLink">
+                            <i class="fas fa-user"></i>
+                            <span>My Profile</span>
+                        </div>
+                        <div class="user-dropdown-item" id="userBookingsLink">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>My Bookings</span>
+                        </div>
+                        <div class="user-dropdown-item" id="userFavoritesLink">
+                            <i class="fas fa-heart"></i>
+                            <span>Favorites</span>
+                        </div>
+                        <div class="user-dropdown-item" id="logoutLink">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <button class="mobile-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
@@ -1803,6 +2351,7 @@
             <a href="#why-us" class="mobile-nav-link">Services</a>
             <a href="#destinations" class="mobile-nav-link">Destinations</a>
             <a href="#packages" class="mobile-nav-link">Packages</a>
+            <a href="#video-gallery" class="mobile-nav-link">Video Gallery</a>
             <a href="#contact" class="mobile-nav-link">Contact</a>
         </nav>
 
@@ -1817,9 +2366,31 @@
                     <span>avianunitytoursandtravel@gmail.com</span>
                 </div>
             </div>
-            <a href="#contact" class="btn btn-primary btn-block">
-                <i class="fas fa-calendar-alt"></i> Book Now
-            </a>
+            <div id="mobileAuthButtons">
+                <a href="#" class="btn btn-outline btn-block" id="mobileLoginBtn" style="margin-bottom: 10px;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <a href="#" class="btn btn-primary btn-block" id="mobileRegisterBtn">
+                    <i class="fas fa-user-plus"></i> Register
+                </a>
+            </div>
+            <div id="mobileUserProfile" style="display: none;">
+                <div style="margin-bottom: 20px; padding: 15px; background: var(--gray-light); border-radius: 8px;">
+                    <p style="font-weight: 500; color: var(--primary); margin-bottom: 5px;" id="mobileUserName"></p>
+                    <p style="font-size: 0.9rem; color: var(--gray);" id="mobileUserEmail"></p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="#" class="btn btn-outline btn-block" id="mobileProfileLink">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="#" class="btn btn-outline btn-block" id="mobileBookingsLink">
+                        <i class="fas fa-calendar-alt"></i> My Bookings
+                    </a>
+                    <a href="#" class="btn btn-outline btn-block" id="mobileLogoutLink">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1840,6 +2411,20 @@
                         <i class="fas fa-headset"></i> Contact Us
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section class="video-gallery" id="video-gallery">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Bhutan Video Gallery</h2>
+                <p class="section-subtitle">Experience the beauty of Bhutan through our curated collection of videos showcasing landscapes, culture, and adventures.</p>
+            </div>
+
+            <div class="video-grid" id="videoGrid">
+                <!-- Videos will be loaded by JavaScript -->
             </div>
         </div>
     </section>
@@ -2590,9 +3175,541 @@
 
     <!-- JavaScript -->
     <script>
-        // ====== FIXED CODE STARTS HERE ======
+        // ====== USER AUTHENTICATION SYSTEM ======
         
-        // Mobile menu functionality
+        // Check if user is logged in
+        function checkLoginStatus() {
+            const user = JSON.parse(localStorage.getItem('drukOjangUser'));
+            if (user) {
+                showUserProfile(user);
+            }
+            return user;
+        }
+
+        // Show user profile
+        function showUserProfile(user) {
+            // Desktop view
+            document.getElementById('authButtons').style.display = 'none';
+            document.getElementById('userProfile').style.display = 'block';
+            document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+            
+            // Mobile view
+            document.getElementById('mobileAuthButtons').style.display = 'none';
+            document.getElementById('mobileUserProfile').style.display = 'block';
+            document.getElementById('mobileUserName').textContent = user.name;
+            document.getElementById('mobileUserEmail').textContent = user.email;
+        }
+
+        // Hide user profile
+        function hideUserProfile() {
+            // Desktop view
+            document.getElementById('authButtons').style.display = 'flex';
+            document.getElementById('userProfile').style.display = 'none';
+            
+            // Mobile view
+            document.getElementById('mobileAuthButtons').style.display = 'block';
+            document.getElementById('mobileUserProfile').style.display = 'none';
+        }
+
+        // Logout user
+        function logoutUser() {
+            localStorage.removeItem('drukOjangUser');
+            hideUserProfile();
+            closeAuthModal();
+            showNotification('Logged out successfully', 'success');
+            
+            // Close mobile menu if open
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div style="position: fixed; top: 100px; right: 20px; background: ${type === 'success' ? 'var(--success)' : 'var(--error)'}; 
+                    color: white; padding: 15px 25px; border-radius: 8px; box-shadow: var(--shadow-hover); 
+                    z-index: 9999; display: flex; align-items: center; gap: 10px; animation: slideInRight 0.3s ease;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            // Add styles for animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOutRight {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.body.appendChild(notification);
+
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                    document.head.removeChild(style);
+                }, 300);
+            }, 3000);
+        }
+
+        // ====== AUTH MODAL FUNCTIONALITY ======
+        const authModal = document.getElementById('authModal');
+        const authClose = document.getElementById('authClose');
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const mobileRegisterBtn = document.getElementById('mobileRegisterBtn');
+
+        // Open auth modal
+        function openAuthModal(tab = 'login') {
+            authModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (tab === 'login') {
+                switchToLoginForm();
+            } else {
+                switchToRegisterForm();
+            }
+        }
+
+        // Close auth modal
+        function closeAuthModal() {
+            authModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Switch to login form
+        function switchToLoginForm() {
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+            loginForm.classList.add('active');
+            registerForm.classList.remove('active');
+            document.getElementById('authTitle').textContent = 'Welcome Back!';
+            document.getElementById('authSubtitle').textContent = 'Sign in to your account to continue';
+        }
+
+        // Switch to register form
+        function switchToRegisterForm() {
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
+            registerForm.classList.add('active');
+            loginForm.classList.remove('active');
+            document.getElementById('authTitle').textContent = 'Join Druk Ojang';
+            document.getElementById('authSubtitle').textContent = 'Create an account to book your Bhutan adventure';
+        }
+
+        // Event listeners for auth modal
+        authClose.addEventListener('click', closeAuthModal);
+        loginTab.addEventListener('click', switchToLoginForm);
+        registerTab.addEventListener('click', switchToRegisterForm);
+        switchToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToRegisterForm();
+        });
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToLoginForm();
+        });
+
+        // Open auth modal from buttons
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAuthModal('login');
+        });
+        registerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAuthModal('register');
+        });
+        mobileLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAuthModal('login');
+            // Close mobile menu
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        mobileRegisterBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAuthModal('register');
+            // Close mobile menu
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                closeAuthModal();
+            }
+        });
+
+        // ====== FORM VALIDATION ======
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 6;
+        }
+
+        function validatePhone(phone) {
+            const re = /^[\+]?[1-9][\d]{0,15}$/;
+            return re.test(phone.replace(/[\s\-\(\)]/g, ''));
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.add('active');
+        }
+
+        function hideError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.classList.remove('active');
+        }
+
+        // ====== LOGIN FORM SUBMISSION ======
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            // Reset errors
+            hideError('loginEmailError');
+            hideError('loginPasswordError');
+
+            // Validate
+            let isValid = true;
+
+            if (!validateEmail(email)) {
+                showError('loginEmailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            if (!validatePassword(password)) {
+                showError('loginPasswordError', 'Password must be at least 6 characters');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Simulate login - In real app, this would be an API call
+            const existingUser = JSON.parse(localStorage.getItem('drukOjangUser'));
+            
+            if (existingUser && existingUser.email === email && existingUser.password === password) {
+                // Successful login
+                showNotification('Login successful! Welcome back!', 'success');
+                closeAuthModal();
+                
+                // Update user data
+                existingUser.lastLogin = new Date().toISOString();
+                if (rememberMe) {
+                    existingUser.rememberMe = true;
+                }
+                localStorage.setItem('drukOjangUser', JSON.stringify(existingUser));
+                
+                // Show user profile
+                showUserProfile(existingUser);
+            } else {
+                // Failed login
+                showNotification('Invalid email or password', 'error');
+            }
+        });
+
+        // ====== REGISTRATION FORM SUBMISSION ======
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+
+            // Reset errors
+            hideError('regNameError');
+            hideError('regEmailError');
+            hideError('regPhoneError');
+            hideError('regPasswordError');
+            hideError('regConfirmPasswordError');
+
+            // Validate
+            let isValid = true;
+
+            if (!name) {
+                showError('regNameError', 'Please enter your full name');
+                isValid = false;
+            }
+
+            if (!validateEmail(email)) {
+                showError('regEmailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            if (!validatePhone(phone)) {
+                showError('regPhoneError', 'Please enter a valid phone number');
+                isValid = false;
+            }
+
+            if (password.length < 8) {
+                showError('regPasswordError', 'Password must be at least 8 characters');
+                isValid = false;
+            } else if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+                showError('regPasswordError', 'Password must contain both letters and numbers');
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                showError('regConfirmPasswordError', 'Passwords do not match');
+                isValid = false;
+            }
+
+            if (!acceptTerms) {
+                showNotification('Please accept the Terms & Conditions', 'error');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Check if user already exists
+            const existingUser = JSON.parse(localStorage.getItem('drukOjangUser'));
+            if (existingUser && existingUser.email === email) {
+                showNotification('An account with this email already exists', 'error');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                password: password, // In real app, this would be hashed
+                createdAt: new Date().toISOString(),
+                bookings: [],
+                favorites: []
+            };
+
+            // Save user
+            localStorage.setItem('drukOjangUser', JSON.stringify(newUser));
+            
+            // Show success message
+            showNotification('Account created successfully! Welcome to Druk Ojang!', 'success');
+            
+            // Switch to login form
+            setTimeout(() => {
+                switchToLoginForm();
+                // Pre-fill login form
+                document.getElementById('loginEmail').value = email;
+                document.getElementById('loginPassword').value = password;
+            }, 1500);
+        });
+
+        // ====== USER DROPDOWN FUNCTIONALITY ======
+        const userAvatar = document.getElementById('userAvatar');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutLink = document.getElementById('logoutLink');
+        const mobileLogoutLink = document.getElementById('mobileLogoutLink');
+
+        // Toggle dropdown
+        userAvatar.addEventListener('click', () => {
+            userDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userAvatar.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.remove('active');
+            }
+        });
+
+        // Logout functionality
+        logoutLink.addEventListener('click', logoutUser);
+        mobileLogoutLink.addEventListener('click', logoutUser);
+
+        // Profile links
+        document.getElementById('userProfileLink').addEventListener('click', () => {
+            showNotification('Profile page coming soon!', 'info');
+            userDropdown.classList.remove('active');
+        });
+
+        document.getElementById('userBookingsLink').addEventListener('click', () => {
+            showNotification('My bookings page coming soon!', 'info');
+            userDropdown.classList.remove('active');
+        });
+
+        document.getElementById('userFavoritesLink').addEventListener('click', () => {
+            showNotification('Favorites page coming soon!', 'info');
+            userDropdown.classList.remove('active');
+        });
+
+        // Mobile profile links
+        document.getElementById('mobileProfileLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            showNotification('Profile page coming soon!', 'info');
+        });
+
+        document.getElementById('mobileBookingsLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            showNotification('My bookings page coming soon!', 'info');
+        });
+
+        // ====== VIDEO GALLERY ======
+        const videoGrid = document.getElementById('videoGrid');
+        const videoModal = document.getElementById('videoModal');
+        const videoModalClose = document.getElementById('videoModalClose');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        // Video data
+        const videos = [
+            {
+                id: 1,
+                title: "Tiger's Nest Monastery",
+                description: "Experience the breathtaking beauty of Paro Taktsang, also known as Tiger's Nest Monastery.",
+                thumbnail: "https://i.ytimg.com/vi/bLJ5CJpb8mM/hqdefault.jpg",
+                videoId: "bLJ5CJpb8mM",
+                duration: "4:32",
+                views: "1.2M"
+            },
+            {
+                id: 2,
+                title: "Bhutan's Festival of Happiness",
+                description: "Witness the vibrant colors and traditions of Bhutan's famous Tshechu festivals.",
+                thumbnail: "https://i.ytimg.com/vi/FhQ0eB_k9-M/hqdefault.jpg",
+                videoId: "FhQ0eB_k9-M",
+                duration: "6:15",
+                views: "850K"
+            },
+            {
+                id: 3,
+                title: "Himalayan Trekking Adventure",
+                description: "Join us on an unforgettable trek through Bhutan's majestic Himalayan landscapes.",
+                thumbnail: "https://i.ytimg.com/vi/8xE6_Shj5o0/hqdefault.jpg",
+                videoId: "8xE6_Shj5o0",
+                duration: "8:45",
+                views: "950K"
+            },
+            {
+                id: 4,
+                title: "Traditional Bhutanese Architecture",
+                description: "Explore the unique and beautiful architecture of Bhutan's dzongs and temples.",
+                thumbnail: "https://i.ytimg.com/vi/7JYjNLQ40b4/hqdefault.jpg",
+                videoId: "7JYjNLQ40b4",
+                duration: "5:20",
+                views: "720K"
+            },
+            {
+                id: 5,
+                title: "Bhutanese Cuisine Experience",
+                description: "Discover the flavors of Bhutan with traditional dishes and cooking methods.",
+                thumbnail: "https://i.ytimg.com/vi/JM2Mq_1pXhE/hqdefault.jpg",
+                videoId: "JM2Mq_1pXhE",
+                duration: "7:10",
+                views: "640K"
+            },
+            {
+                id: 6,
+                title: "Wildlife of Bhutan",
+                description: "Meet the incredible wildlife that calls Bhutan's forests and mountains home.",
+                thumbnail: "https://i.ytimg.com/vi/9NAR-JobQw8/hqdefault.jpg",
+                videoId: "9NAR-JobQw8",
+                duration: "9:05",
+                views: "1.1M"
+            }
+        ];
+
+        // Render videos
+        function renderVideos() {
+            videoGrid.innerHTML = '';
+            
+            videos.forEach(video => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+                videoCard.innerHTML = `
+                    <div class="video-thumbnail" data-video-id="${video.videoId}">
+                        <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+                        <div class="video-play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3 class="video-title">${video.title}</h3>
+                        <p class="video-desc">${video.description}</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> ${video.duration}</span>
+                            <span><i class="far fa-eye"></i> ${video.views} views</span>
+                        </div>
+                    </div>
+                `;
+                
+                videoGrid.appendChild(videoCard);
+            });
+
+            // Add click event to video thumbnails
+            document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    const videoId = thumbnail.getAttribute('data-video-id');
+                    playVideo(videoId);
+                });
+            });
+        }
+
+        // Play video in modal
+        function playVideo(videoId) {
+            videoPlayer.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close video modal
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            videoPlayer.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners for video modal
+        videoModalClose.addEventListener('click', closeVideoModal);
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+
+        // ====== MOBILE MENU FUNCTIONALITY ======
         const mobileToggle = document.getElementById('mobileToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
@@ -2615,17 +3732,7 @@
             });
         });
 
-        // Header scroll effect
-        const header = document.getElementById('header');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
+        // ====== ORIGINAL FUNCTIONALITY ======
         // Destinations data
         const destinations = [
             // Western Bhutan
@@ -2694,7 +3801,7 @@
             {
                 id: 11, name: "Mongar Dzong", region: "east", location: "Mongar, Eastern Bhutan",
                 desc: "Eastern gateway with dramatic landscapes, weaving centers, and traditional culture.",
-                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
 
             // Southern Bhutan
@@ -2712,7 +3819,7 @@
             }
         ];
 
-        // Packages data - FIXED: Themes now have no background
+        // Packages data
         const packages = [
             {
                 id: 1, title: "Complete Bhutan Experience", duration: "14 Days / 13 Nights",
@@ -2871,7 +3978,7 @@
             }
         }
 
-        // Render packages - FIXED: Themes have no background
+        // Render packages
         function renderPackages() {
             packagesGrid.innerHTML = '';
 
@@ -2919,7 +4026,7 @@
                 showMorePackagesBtn.style.display = 'none';
             }
 
-            // Add event listeners to book buttons - FIXED: Event delegation
+            // Add event listeners to book buttons
             setTimeout(() => {
                 document.querySelectorAll('.book-package-btn').forEach(button => {
                     button.addEventListener('click', (e) => {
@@ -2962,7 +4069,7 @@
             renderPackages();
         });
 
-        // ====== BOOKING MODAL FIXED CODE ======
+        // ====== BOOKING MODAL ======
         const bookingModal = document.getElementById('bookingModal');
         const modalClose = document.getElementById('modalClose');
         const cancelBooking = document.getElementById('cancelBooking');
@@ -2972,10 +4079,19 @@
         let selectedPackage = null;
         let selectedPaymentMethod = 'bank';
 
-        // Open booking modal - FIXED
+        // Open booking modal
         function openBookingModal(pkg) {
             selectedPackage = pkg;
             currentStep = 1;
+            
+            // Check if user is logged in
+            const user = checkLoginStatus();
+            if (user) {
+                // Pre-fill with user data
+                document.getElementById('bookingName').value = user.name;
+                document.getElementById('bookingEmail').value = user.email;
+                document.getElementById('bookingPhone').value = user.phone;
+            }
             
             // Update booking summary
             const bookingSummary = document.getElementById('bookingSummary');
@@ -3005,9 +4121,6 @@
             document.getElementById('bookingDate').valueAsDate = tomorrow;
 
             // Reset form
-            document.getElementById('bookingName').value = '';
-            document.getElementById('bookingEmail').value = '';
-            document.getElementById('bookingPhone').value = '';
             document.getElementById('bookingPersons').value = 2;
             document.getElementById('specialRequests').value = '';
             document.getElementById('transactionId').value = '';
@@ -3085,7 +4198,7 @@
             }
         });
 
-        // Step navigation - FIXED validation
+        // Step navigation
         document.getElementById('nextToPayment').addEventListener('click', () => {
             // Validate step 1
             const name = document.getElementById('bookingName').value.trim();
@@ -3100,7 +4213,7 @@
                 return;
             }
             
-            if (!isValidEmail(email)) {
+            if (!validateEmail(email)) {
                 alert('Please enter a valid email address');
                 return;
             }
@@ -3120,6 +4233,15 @@
         });
 
         document.getElementById('completePayment').addEventListener('click', () => {
+            // Check if user is logged in
+            const user = checkLoginStatus();
+            if (!user) {
+                showNotification('Please login or register to complete your booking', 'error');
+                closeBookingModal();
+                openAuthModal('login');
+                return;
+            }
+
             // Validate step 2 based on payment method
             if (selectedPaymentMethod === 'bank') {
                 const transactionId = document.getElementById('transactionId').value.trim();
@@ -3155,14 +4277,41 @@
             }
             
             // Process payment (simulated)
+            showNotification('Processing your payment...', 'info');
             setTimeout(() => {
                 currentStep = 3;
                 updateSteps();
                 
                 // Send confirmation email (simulated)
                 sendConfirmationEmail();
+                
+                // Save booking to user's account
+                saveBookingToUser();
+                
+                showNotification('Booking confirmed! Check your email for details.', 'success');
             }, 1500);
         });
+
+        // Save booking to user
+        function saveBookingToUser() {
+            const user = JSON.parse(localStorage.getItem('drukOjangUser'));
+            if (user) {
+                const booking = {
+                    id: Date.now(),
+                    packageId: selectedPackage.id,
+                    packageName: selectedPackage.title,
+                    date: document.getElementById('bookingDate').value,
+                    persons: document.getElementById('bookingPersons').value,
+                    total: selectedPackage.price * parseInt(document.getElementById('bookingPersons').value),
+                    status: 'confirmed',
+                    bookingRef: document.getElementById('bookingRef').textContent,
+                    bookedAt: new Date().toISOString()
+                };
+                
+                user.bookings.push(booking);
+                localStorage.setItem('drukOjangUser', JSON.stringify(user));
+            }
+        }
 
         // Close modal
         modalClose.addEventListener('click', closeBookingModal);
@@ -3241,11 +4390,6 @@
         });
 
         // Validation functions
-        function isValidEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
         function isValidCardNumber(number) {
             const re = /^[0-9]{13,19}$/;
             return re.test(number.replace(/\s/g, ''));
@@ -3421,7 +4565,7 @@ ${name}
         }, { threshold: 0.1 });
 
         // Observe all cards
-        document.querySelectorAll('.theme-card, .service-card, .destination-card, .package-card').forEach(card => {
+        document.querySelectorAll('.theme-card, .service-card, .destination-card, .package-card, .video-card').forEach(card => {
             card.style.opacity = '0';
             observer.observe(card);
         });
@@ -3471,7 +4615,24 @@ ${name}
         if (bookingDateInput) {
             bookingDateInput.min = tomorrowStr;
         }
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkLoginStatus();
+            renderVideos();
+            renderDestinations();
+            renderPackages();
+        });
     </script>
 </body>
-
 </html>
