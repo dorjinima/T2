@@ -33,20 +33,24 @@
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* ====== LOGIN/REGISTER MODAL ====== */
-        .auth-modal {
+        /* ====== BOOKING FORM MODAL ====== */
+        .booking-modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 9999;
-            display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .booking-modal.active {
+            display: flex;
         }
 
         @keyframes fadeIn {
@@ -54,14 +58,16 @@
             to { opacity: 1; }
         }
 
-        .auth-container {
+        .booking-container {
             background: var(--white);
             border-radius: 12px;
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            animation: slideUp 0.5s ease;
+            animation: slideUp 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         @keyframes slideUp {
@@ -69,15 +75,15 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        .auth-header {
-            padding: 40px 30px 30px;
+        .booking-header {
+            padding: 30px 30px 20px;
             background: var(--gradient-primary);
             color: var(--white);
             text-align: center;
             position: relative;
         }
 
-        .auth-header::before {
+        .booking-header::before {
             content: '';
             position: absolute;
             top: 0;
@@ -87,80 +93,31 @@
             background: var(--gradient-secondary);
         }
 
-        .auth-header h2 {
+        .booking-header h2 {
             color: var(--white);
             margin-bottom: 10px;
             font-size: 1.8rem;
         }
 
-        .auth-header h2::after {
+        .booking-header h2::after {
             display: none;
         }
 
-        .auth-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .booking-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
             margin-bottom: 15px;
-            font-size: 1.5rem;
-            font-weight: 300;
         }
 
-        .auth-logo .logo-icon {
-            color: var(--secondary);
-            font-size: 2rem;
-        }
-
-        .auth-logo span {
-            font-weight: 600;
-            color: var(--secondary);
-        }
-
-        .auth-tabs {
-            display: flex;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            margin-top: 20px;
-            overflow: hidden;
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: 12px;
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-
-        .auth-tab.active {
-            background: var(--white);
-            color: var(--primary);
-            border-radius: 6px;
-        }
-
-        .auth-body {
+        .booking-body {
             padding: 30px;
         }
 
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .auth-form-group {
+        .booking-form-group {
             margin-bottom: 20px;
         }
 
-        .auth-form-group label {
+        .booking-form-group label {
             display: block;
             margin-bottom: 8px;
             color: var(--dark);
@@ -168,7 +125,7 @@
             font-size: 0.95rem;
         }
 
-        .auth-input {
+        .booking-input {
             width: 100%;
             padding: 12px 16px;
             border: 1px solid var(--border);
@@ -178,51 +135,20 @@
             background: var(--white);
         }
 
-        .auth-input:focus {
+        .booking-input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(26, 93, 87, 0.1);
         }
 
-        .password-strength {
-            margin-top: 5px;
-            height: 4px;
-            background: var(--border);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
+        .booking-btns {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
         }
 
-        .password-strength-meter {
-            height: 100%;
-            width: 0%;
-            background: var(--error);
-            transition: all 0.3s ease;
-        }
-
-        .password-strength.weak .password-strength-meter {
-            width: 33%;
-            background: var(--error);
-        }
-
-        .password-strength.medium .password-strength-meter {
-            width: 66%;
-            background: var(--warning);
-        }
-
-        .password-strength.strong .password-strength-meter {
-            width: 100%;
-            background: var(--success);
-        }
-
-        .password-strength-text {
-            font-size: 0.8rem;
-            margin-top: 3px;
-            color: var(--gray);
-        }
-
-        .auth-btn {
-            width: 100%;
+        .booking-btn {
+            flex: 1;
             padding: 14px;
             background: var(--gradient-primary);
             color: var(--white);
@@ -236,19 +162,29 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-top: 10px;
         }
 
-        .auth-btn:hover {
+        .booking-btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-hover);
         }
 
-        .auth-btn.secondary {
+        .booking-btn.secondary {
             background: var(--gradient-secondary);
         }
 
-        .auth-message {
+        .booking-btn.outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .booking-btn.outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .booking-message {
             padding: 12px;
             border-radius: 6px;
             font-size: 0.9rem;
@@ -263,88 +199,18 @@
             75% { transform: translateX(10px); }
         }
 
-        .auth-message.error {
+        .booking-message.error {
             background: rgba(231, 76, 60, 0.1);
             color: var(--error);
             border-left: 4px solid var(--error);
             display: block;
         }
 
-        .auth-message.success {
+        .booking-message.success {
             background: rgba(39, 174, 96, 0.1);
             color: var(--success);
             border-left: 4px solid var(--success);
             display: block;
-        }
-
-        .auth-message.info {
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--dark);
-            border-left: 4px solid #3498db;
-            display: block;
-        }
-
-        .demo-credentials {
-            background: var(--gray-light);
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: var(--dark);
-            text-align: left;
-            border-left: 4px solid var(--secondary);
-        }
-
-        .demo-credentials h4 {
-            color: var(--primary);
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .demo-credentials p {
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .terms-check {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 20px 0;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .terms-check input {
-            margin-top: 3px;
-        }
-
-        .terms-check a {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-
-        .auth-footer {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .auth-switch {
-            color: var(--primary);
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .auth-switch:hover {
-            text-decoration: underline;
         }
 
         /* ====== VIDEO GALLERY ====== */
@@ -533,37 +399,6 @@
             gap: 10px;
             color: var(--primary);
             font-weight: 500;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .logout-btn {
-            background: none;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logout-btn:hover {
-            background: var(--primary);
-            color: var(--white);
         }
 
         /* ====== BASE STYLES ====== */
@@ -1051,11 +886,6 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            display: none;
-        }
-
-        .destination-card:nth-child(-n+6) {
-            display: block;
         }
 
         .destination-card:hover {
@@ -1129,12 +959,6 @@
             margin-bottom: 20px;
         }
 
-        .show-more-btn {
-            display: block;
-            margin: 50px auto 0;
-            text-align: center;
-        }
-
         /* ====== PACKAGES SECTION ====== */
         .packages {
             background-color: var(--gray-light);
@@ -1176,14 +1000,6 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
-        }
-
-        .package-card:nth-child(-n+6) {
-            display: block;
-        }
-
-        .package-card:nth-child(n+7) {
-            display: none;
         }
 
         .package-card:hover {
@@ -1294,12 +1110,6 @@
             font-size: 1rem;
             color: var(--gray);
             font-weight: 400;
-        }
-
-        .more-packages-btn {
-            display: block;
-            margin: 50px auto 0;
-            text-align: center;
         }
 
         /* ====== CONTACT SECTION ====== */
@@ -1705,6 +1515,11 @@
             .video-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
+
+            .destinations-grid,
+            .packages-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -1765,9 +1580,23 @@
                 display: none;
             }
 
-            .auth-container {
+            .booking-container {
                 max-width: 100%;
                 margin: 10px;
+            }
+
+            .booking-btns {
+                flex-direction: column;
+            }
+
+            .destinations-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .tab-btn {
+                white-space: nowrap;
             }
         }
 
@@ -1788,16 +1617,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .destinations-tabs {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
-            }
-
-            .tab-btn {
-                white-space: nowrap;
-            }
-
             .company-policy {
                 padding: 20px;
             }
@@ -1806,12 +1625,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .auth-header {
-                padding: 30px 20px 20px;
+            .booking-header {
+                padding: 20px 15px;
             }
 
-            .auth-body {
-                padding: 20px;
+            .booking-body {
+                padding: 20px 15px;
             }
         }
 
@@ -1899,107 +1718,85 @@
 </head>
 
 <body>
-    <!-- Login/Register Modal -->
-    <div class="auth-modal" id="authModal">
-        <div class="auth-container">
-            <div class="auth-header">
-                <div class="auth-logo">
-                    <i class="fas fa-mountain logo-icon"></i>
-                    <span>Druk <span>Ojang</span></span>
+    <!-- Booking Form Modal -->
+    <div class="booking-modal" id="bookingModal">
+        <div class="booking-container">
+            <div class="booking-header">
+                <div class="booking-icon">
+                    <i class="fas fa-calendar-check"></i>
                 </div>
-                <h2>Welcome to Bhutan Travel</h2>
-                <p>Login or create account to access exclusive content</p>
-                
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="login">Login</button>
-                    <button class="auth-tab" data-tab="register">Register</button>
-                </div>
+                <h2>Book Your Tour</h2>
+                <p>Fill in your details to book this amazing experience</p>
             </div>
             
-            <div class="auth-body">
-                <!-- Login Form -->
-                <form id="loginForm" class="auth-form active">
-                    <div class="auth-message" id="loginMessage"></div>
-                    
-                    <div class="auth-form-group">
-                        <label for="loginUsername">Username or Email</label>
-                        <input type="text" id="loginUsername" class="auth-input" placeholder="Enter username or email" required>
+            <div class="booking-body">
+                <div class="booking-message" id="bookingMessage"></div>
+                
+                <!-- Booking Form -->
+                <form id="bookingForm" class="booking-form active">
+                    <div class="booking-form-group">
+                        <label for="bookingName">Full Name *</label>
+                        <input type="text" id="bookingName" class="booking-input" placeholder="John Doe" required>
                     </div>
                     
-                    <div class="auth-form-group">
-                        <label for="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" class="auth-input" placeholder="Enter password" required>
+                    <div class="booking-form-group">
+                        <label for="bookingEmail">Email Address *</label>
+                        <input type="email" id="bookingEmail" class="booking-input" placeholder="your@email.com" required>
                     </div>
                     
-                    <button type="submit" class="auth-btn">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </button>
+                    <div class="booking-form-group">
+                        <label for="bookingPhone">Phone Number *</label>
+                        <input type="tel" id="bookingPhone" class="booking-input" placeholder="+975 77 123 456" required>
+                    </div>
                     
-                    <div class="auth-footer">
-                        <p>Don't have an account? <span class="auth-switch" data-switch="register">Create Account</span></p>
+                    <div class="booking-form-group">
+                        <label for="bookingTravelers">Number of Travelers *</label>
+                        <select id="bookingTravelers" class="booking-input" required>
+                            <option value="">Select number</option>
+                            <option value="1">1 Traveler</option>
+                            <option value="2">2 Travelers</option>
+                            <option value="3-4">3-4 Travelers</option>
+                            <option value="5-8">5-8 Travelers</option>
+                            <option value="9+">9+ Travelers (Group)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="booking-form-group">
+                        <label for="bookingDate">Preferred Travel Date *</label>
+                        <input type="date" id="bookingDate" class="booking-input" required>
+                    </div>
+                    
+                    <div class="booking-form-group">
+                        <label for="bookingDuration">Tour Duration (Days) *</label>
+                        <select id="bookingDuration" class="booking-input" required>
+                            <option value="">Select duration</option>
+                            <option value="5-7">5-7 Days</option>
+                            <option value="8-10">8-10 Days</option>
+                            <option value="11-14">11-14 Days</option>
+                            <option value="15+">15+ Days</option>
+                        </select>
+                    </div>
+                    
+                    <div class="booking-form-group">
+                        <label for="bookingMessage">Special Requirements or Questions</label>
+                        <textarea id="bookingMessage" class="booking-input" rows="3" placeholder="Any dietary restrictions, special requests, or questions..."></textarea>
+                    </div>
+                    
+                    <div class="booking-btns">
+                        <button type="submit" class="booking-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Booking Request
+                        </button>
+                        <button type="button" class="booking-btn outline" id="cancelBooking">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
                     </div>
                 </form>
-                
-                <!-- Register Form -->
-                <form id="registerForm" class="auth-form">
-                    <div class="auth-message" id="registerMessage"></div>
-                    
-                    <div class="auth-form-group">
-                        <label for="regFullName">Full Name</label>
-                        <input type="text" id="regFullName" class="auth-input" placeholder="Enter your full name" required>
-                    </div>
-                    
-                    <div class="auth-form-group">
-                        <label for="regEmail">Email Address</label>
-                        <input type="email" id="regEmail" class="auth-input" placeholder="Enter your email" required>
-                    </div>
-                    
-                    <div class="auth-form-group">
-                        <label for="regUsername">Username</label>
-                        <input type="text" id="regUsername" class="auth-input" placeholder="Choose a username" required>
-                    </div>
-                    
-                    <div class="auth-form-group">
-                        <label for="regPassword">Password</label>
-                        <input type="password" id="regPassword" class="auth-input" placeholder="Create a password" required>
-                        <div class="password-strength" id="passwordStrength">
-                            <div class="password-strength-meter"></div>
-                        </div>
-                        <div class="password-strength-text" id="passwordStrengthText">Password strength: None</div>
-                    </div>
-                    
-                    <div class="auth-form-group">
-                        <label for="regConfirmPassword">Confirm Password</label>
-                        <input type="password" id="regConfirmPassword" class="auth-input" placeholder="Confirm your password" required>
-                    </div>
-                    
-                    <div class="terms-check">
-                        <input type="checkbox" id="agreeTerms" required>
-                        <label for="agreeTerms">
-                            I agree to the <a href="#" id="termsLink">Terms of Service</a> and <a href="#" id="privacyLink">Privacy Policy</a>
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="auth-btn secondary">
-                        <i class="fas fa-user-plus"></i> Create Account
-                    </button>
-                    
-                    <div class="auth-footer">
-                        <p>Already have an account? <span class="auth-switch" data-switch="login">Login</span></p>
-                    </div>
-                </form>
-                
-                <div class="demo-credentials">
-                    <h4><i class="fas fa-info-circle"></i> Demo Account (for testing)</h4>
-                    <p><strong>Username:</strong> bhutan2024</p>
-                    <p><strong>Password:</strong> druk123</p>
-                </div>
             </div>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div id="mainContent" style="display: none;">
+    <div id="mainContent">
         <!-- Header -->
         <header class="header" id="header">
             <div class="container header-container">
@@ -2017,16 +1814,6 @@
                     <a href="#video-gallery" class="nav-link">Videos</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </nav>
-
-                <div class="user-nav">
-                    <div class="user-info" id="userInfo">
-                        <div class="user-avatar" id="userAvatar">B</div>
-                        <span id="userName">Bhutan Explorer</span>
-                    </div>
-                    <button class="logout-btn" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
-                </div>
 
                 <button class="mobile-toggle" id="mobileToggle">
                     <i class="fas fa-bars"></i>
@@ -2067,9 +1854,6 @@
                         <span>avianunitytoursandtravel@gmail.com</span>
                     </div>
                 </div>
-                <button class="logout-btn btn-block" id="mobileLogoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
             </div>
         </div>
 
@@ -2308,17 +2092,11 @@
             <div class="container">
                 <div class="section-header text-center">
                     <h2>Bhutan Experience Videos</h2>
-                    <p class="section-subtitle">Explore the beauty of Bhutan through our exclusive video collection showcasing landscapes, culture, and adventures.</p>
+                    <p class="section-subtitle">Watch stunning videos of Bhutan's landscapes, culture, and attractions. All videos are freely available.</p>
                 </div>
 
                 <div class="video-grid" id="videoGrid">
                     <!-- Videos loaded by JavaScript -->
-                </div>
-
-                <div class="text-center">
-                    <button class="btn btn-primary" id="loadMoreVideos">
-                        <i class="fas fa-plus"></i> Load More Videos
-                    </button>
                 </div>
             </div>
         </section>
@@ -2344,19 +2122,15 @@
 
                 <div class="destinations-tabs">
                     <button class="tab-btn active" data-region="all">All Regions</button>
-                    <button class="tab-btn" data-region="west">Western Bhutan</button>
-                    <button class="tab-btn" data-region="central">Central Bhutan</button>
-                    <button class="tab-btn" data-region="east">Eastern Bhutan</button>
-                    <button class="tab-btn" data-region="south">Southern Bhutan</button>
+                    <button class="tab-btn" data-region="west">Western Bhutan (6)</button>
+                    <button class="tab-btn" data-region="central">Central Bhutan (6)</button>
+                    <button class="tab-btn" data-region="east">Eastern Bhutan (6)</button>
+                    <button class="tab-btn" data-region="south">Southern Bhutan (6)</button>
                 </div>
 
                 <div class="destinations-grid" id="destinationsGrid">
                     <!-- Destinations loaded by JavaScript -->
                 </div>
-
-                <button class="btn btn-outline show-more-btn" id="showMoreDestinations">
-                    <i class="fas fa-plus"></i> Show More Destinations
-                </button>
             </div>
         </section>
 
@@ -2377,10 +2151,6 @@
                 <div class="packages-grid" id="packagesGrid">
                     <!-- Package cards loaded by JavaScript -->
                 </div>
-
-                <button class="btn btn-outline more-packages-btn" id="showMorePackages">
-                    <i class="fas fa-plus"></i> Show More Packages
-                </button>
             </div>
         </section>
 
@@ -2438,7 +2208,7 @@
                                     </div>
                                     <div class="policy-item">
                                         <span class="policy-item-title">Full Payment:</span>
-                                        <p class="policy-item-detail">Full payment due 30 days before departure</p>
+                                        <p class="payment-item-detail">Full payment due 30 days before departure</p>
                                     </div>
                                     <div class="policy-item">
                                         <span class="policy-item-title">Payment Methods:</span>
@@ -2611,344 +2381,217 @@
 
     <!-- JavaScript -->
     <script>
-        // ====== USER MANAGEMENT SYSTEM ======
-        const authModal = document.getElementById('authModal');
-        const mainContent = document.getElementById('mainContent');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const loginMessage = document.getElementById('loginMessage');
-        const registerMessage = document.getElementById('registerMessage');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
-        const userAvatar = document.getElementById('userAvatar');
-        const userName = document.getElementById('userName');
-        const passwordStrength = document.getElementById('passwordStrength');
-        const passwordStrengthText = document.getElementById('passwordStrengthText');
-        const authTabs = document.querySelectorAll('.auth-tab');
-        const authForms = document.querySelectorAll('.auth-form');
-        const authSwitches = document.querySelectorAll('.auth-switch');
+        // ====== BOOKING FORM SYSTEM ======
+        const bookingModal = document.getElementById('bookingModal');
+        const bookingMessage = document.getElementById('bookingMessage');
+        const bookingForm = document.getElementById('bookingForm');
+        const cancelBooking = document.getElementById('cancelBooking');
+        const confirmBooking = document.querySelector('#bookingForm button[type="submit"]');
 
-        // User storage key
-        const USER_STORAGE_KEY = 'drukUsers';
-        const CURRENT_USER_KEY = 'drukCurrentUser';
+        let selectedPackageId = null;
 
-        // Default demo user
-        const defaultUsers = [
-            {
-                id: 1,
-                username: 'bhutan2024',
-                email: 'demo@bhutan.com',
-                fullName: 'Bhutan Explorer',
-                password: 'druk123',
-                createdAt: new Date().toISOString()
-            }
-        ];
-
-        // Initialize user storage
-        function initializeUserStorage() {
-            if (!localStorage.getItem(USER_STORAGE_KEY)) {
-                localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(defaultUsers));
-            }
-        }
-
-        // Get all users
-        function getAllUsers() {
-            return JSON.parse(localStorage.getItem(USER_STORAGE_KEY)) || [];
-        }
-
-        // Save users
-        function saveUsers(users) {
-            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(users));
-        }
-
-        // Get current user
-        function getCurrentUser() {
-            return JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
-        }
-
-        // Save current user
-        function saveCurrentUser(user) {
-            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
-        }
-
-        // Check password strength
-        function checkPasswordStrength(password) {
-            let strength = 0;
-            let text = 'None';
+        // Show booking message
+        function showBookingMessage(message, type) {
+            bookingMessage.textContent = message;
+            bookingMessage.className = `booking-message ${type}`;
+            bookingMessage.style.display = 'block';
             
-            if (password.length >= 8) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
-            
-            if (strength === 0) {
-                text = 'None';
-                passwordStrength.className = 'password-strength';
-            } else if (strength === 1) {
-                text = 'Weak';
-                passwordStrength.className = 'password-strength weak';
-            } else if (strength <= 3) {
-                text = 'Medium';
-                passwordStrength.className = 'password-strength medium';
-            } else {
-                text = 'Strong';
-                passwordStrength.className = 'password-strength strong';
-            }
-            
-            passwordStrengthText.textContent = `Password strength: ${text}`;
-            return strength;
-        }
-
-        // Switch between login/register tabs
-        authTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabName = tab.getAttribute('data-tab');
-                
-                // Update active tab
-                authTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Update active form
-                authForms.forEach(form => form.classList.remove('active'));
-                document.getElementById(`${tabName}Form`).classList.add('active');
-                
-                // Clear messages
-                loginMessage.className = 'auth-message';
-                registerMessage.className = 'auth-message';
-            });
-        });
-
-        // Switch between forms
-        authSwitches.forEach(switchBtn => {
-            switchBtn.addEventListener('click', () => {
-                const switchTo = switchBtn.getAttribute('data-switch');
-                
-                // Update active tab
-                authTabs.forEach(tab => {
-                    tab.classList.remove('active');
-                    if (tab.getAttribute('data-tab') === switchTo) {
-                        tab.classList.add('active');
-                    }
-                });
-                
-                // Update active form
-                authForms.forEach(form => form.classList.remove('active'));
-                document.getElementById(`${switchTo}Form`).classList.add('active');
-                
-                // Clear messages
-                loginMessage.className = 'auth-message';
-                registerMessage.className = 'auth-message';
-            });
-        });
-
-        // Password strength checker
-        document.getElementById('regPassword').addEventListener('input', function(e) {
-            checkPasswordStrength(e.target.value);
-        });
-
-        // Handle login form submission
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const usernameOrEmail = document.getElementById('loginUsername').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            
-            const users = getAllUsers();
-            const user = users.find(u => 
-                (u.username === usernameOrEmail || u.email === usernameOrEmail) && 
-                u.password === password
-            );
-            
-            if (user) {
-                saveCurrentUser(user);
-                loginSuccess(user);
-            } else {
-                showMessage(loginMessage, 'Invalid username/email or password', 'error');
-                document.getElementById('loginPassword').value = '';
-            }
-        });
-
-        // Handle register form submission
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const fullName = document.getElementById('regFullName').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const username = document.getElementById('regUsername').value.trim();
-            const password = document.getElementById('regPassword').value;
-            const confirmPassword = document.getElementById('regConfirmPassword').value;
-            const agreeTerms = document.getElementById('agreeTerms').checked;
-            
-            // Validation
-            if (!agreeTerms) {
-                showMessage(registerMessage, 'You must agree to the terms and conditions', 'error');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showMessage(registerMessage, 'Passwords do not match', 'error');
-                return;
-            }
-            
-            const passwordStrengthValue = checkPasswordStrength(password);
-            if (passwordStrengthValue < 2) {
-                showMessage(registerMessage, 'Password is too weak. Please use a stronger password.', 'error');
-                return;
-            }
-            
-            const users = getAllUsers();
-            
-            // Check if username already exists
-            if (users.some(u => u.username === username)) {
-                showMessage(registerMessage, 'Username already exists', 'error');
-                return;
-            }
-            
-            // Check if email already exists
-            if (users.some(u => u.email === email)) {
-                showMessage(registerMessage, 'Email already registered', 'error');
-                return;
-            }
-            
-            // Create new user
-            const newUser = {
-                id: Date.now(),
-                username,
-                email,
-                fullName,
-                password,
-                createdAt: new Date().toISOString()
-            };
-            
-            users.push(newUser);
-            saveUsers(users);
-            saveCurrentUser(newUser);
-            
-            showMessage(registerMessage, 'Account created successfully! Welcome to Bhutan Travel.', 'success');
-            
-            // Auto login after 1 second
             setTimeout(() => {
-                loginSuccess(newUser);
-            }, 1000);
-        });
-
-        // Handle successful login
-        function loginSuccess(user) {
-            authModal.style.display = 'none';
-            mainContent.style.display = 'block';
-            
-            // Update user info
-            userName.textContent = user.fullName;
-            userAvatar.textContent = user.fullName.charAt(0).toUpperCase();
-            
-            // Initialize all components
-            initializeAllComponents();
+                bookingMessage.style.display = 'none';
+            }, 5000);
         }
 
-        // Handle logout
-        function handleLogout() {
-            localStorage.removeItem(CURRENT_USER_KEY);
-            window.location.reload();
-        }
-
-        logoutBtn.addEventListener('click', handleLogout);
-        mobileLogoutBtn.addEventListener('click', handleLogout);
-
-        // Show message function
-        function showMessage(element, text, type) {
-            element.textContent = text;
-            element.className = `auth-message ${type}`;
-            element.style.display = 'block';
-        }
-
-        // Check login status on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeUserStorage();
-            const currentUser = getCurrentUser();
+        // Show booking modal
+        function showBookingModal(packageId) {
+            selectedPackageId = packageId;
             
-            if (currentUser) {
-                loginSuccess(currentUser);
-            } else {
-                authModal.style.display = 'flex';
+            // Set today's date as min date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('bookingDate').min = today;
+            
+            // Clear form
+            document.getElementById('bookingName').value = '';
+            document.getElementById('bookingEmail').value = '';
+            document.getElementById('bookingPhone').value = '';
+            document.getElementById('bookingTravelers').value = '';
+            document.getElementById('bookingDate').value = '';
+            document.getElementById('bookingDuration').value = '';
+            document.getElementById('bookingMessage').value = '';
+            
+            bookingModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Hide booking modal
+        function hideBookingModal() {
+            bookingModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            selectedPackageId = null;
+        }
+
+        // Handle cancel booking
+        cancelBooking.addEventListener('click', hideBookingModal);
+
+        // Handle booking form submission
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const bookingName = document.getElementById('bookingName').value.trim();
+            const bookingEmail = document.getElementById('bookingEmail').value.trim();
+            const bookingPhone = document.getElementById('bookingPhone').value.trim();
+            const bookingTravelers = document.getElementById('bookingTravelers').value.trim();
+            const bookingDate = document.getElementById('bookingDate').value.trim();
+            const bookingDuration = document.getElementById('bookingDuration').value.trim();
+            const specialMessage = document.getElementById('bookingMessage').value.trim();
+            
+            // Basic validation
+            if (!bookingName || !bookingEmail || !bookingPhone || !bookingTravelers || !bookingDate || !bookingDuration) {
+                showBookingMessage('Please fill all required fields', 'error');
+                return;
             }
+            
+            if (!isValidEmail(bookingEmail)) {
+                showBookingMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Simulate booking processing
+            showBookingMessage('Processing your booking request...', 'success');
+            
+            setTimeout(() => {
+                // Simulate successful booking
+                showBookingMessage('Booking request submitted successfully! We will contact you within 24 hours to confirm your tour.', 'success');
+                
+                // Send email notification (simulated)
+                const packageTitle = packages.find(p => p.id === selectedPackageId)?.title || 'Selected Package';
+                const emailSubject = `Booking Request: ${packageTitle}`;
+                const emailBody = `
+Booking Details:
+- Name: ${bookingName}
+- Email: ${bookingEmail}
+- Phone: ${bookingPhone}
+- Travelers: ${bookingTravelers}
+- Preferred Date: ${bookingDate}
+- Duration: ${bookingDuration}
+- Package: ${packageTitle}
+- Special Requirements: ${specialMessage || 'None'}
+                `;
+                
+                const mailtoLink = `mailto:avianunitytoursandtravel@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                setTimeout(() => {
+                    hideBookingModal();
+                    // Open email client
+                    window.open(mailtoLink, '_blank');
+                }, 1500);
+                
+            }, 2000);
         });
+
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
 
         // ====== VIDEO GALLERY ======
         const videoGrid = document.getElementById('videoGrid');
         const videoModal = document.getElementById('videoModal');
         const videoModalClose = document.getElementById('videoModalClose');
         const videoPlayer = document.getElementById('videoPlayer');
-        const loadMoreVideosBtn = document.getElementById('loadMoreVideos');
 
+        // Video Data with updated URLs
         const videos = [
             {
                 id: 1,
                 title: "Tiger's Nest Monastery - Paro",
                 description: "Experience the breathtaking Tiger's Nest Monastery perched on a cliffside",
-                youtubeId: "s8y7g8h6q8w",
+                youtubeId: "1JwCTynkr3Y",
                 duration: "3:45",
-                thumbnail: "https://img.youtube.com/vi/s8y7g8h6q8w/maxresdefault.jpg",
+                thumbnail: "https://img.youtube.com/vi/1JwCTynkr3Y/maxresdefault.jpg",
                 category: "Cultural"
             },
             {
                 id: 2,
                 title: "Bhutan's Annual Festival - Tshechu",
                 description: "Colorful mask dances and religious celebrations",
-                youtubeId: "JhGjG1s2CQs",
+                youtubeId: "YKov17GDFQo",
                 duration: "5:20",
-                thumbnail: "https://img.youtube.com/vi/JhGjG1s2CQs/maxresdefault.jpg",
+                thumbnail: "https://img.youtube.com/vi/YKov17GDFQo/maxresdefault.jpg",
                 category: "Festival"
             },
             {
                 id: 3,
                 title: "Himalayan Trekking Adventure",
                 description: "Journey through Bhutan's majestic mountain trails",
-                youtubeId: "Uka9Fq6JZ1s",
+                youtubeId: "zCfGVvQm4Uk",
                 duration: "4:15",
-                thumbnail: "https://img.youtube.com/vi/Uka9Fq6JZ1s/maxresdefault.jpg",
+                thumbnail: "https://img.youtube.com/vi/zCfGVvQm4Uk/maxresdefault.jpg",
                 category: "Adventure"
             },
             {
                 id: 4,
                 title: "Traditional Bhutanese Architecture",
                 description: "Explore the unique dzongs and traditional homes",
-                youtubeId: "dQw4w9WgXcQ",
+                youtubeId: "gl8J4bS3lOQ",
                 duration: "6:30",
-                thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                thumbnail: "https://img.youtube.com/vi/gl8J4bS3lOQ/maxresdefault.jpg",
                 category: "Architecture"
             },
             {
                 id: 5,
                 title: "Bhutanese Cuisine Experience",
                 description: "Taste authentic Bhutanese dishes and cooking methods",
-                youtubeId: "4fLx9fJ8cDc",
+                youtubeId: "CFZuFR2d3ko",
                 duration: "4:50",
-                thumbnail: "https://img.youtube.com/vi/4fLx9fJ8cDc/maxresdefault.jpg",
+                thumbnail: "https://img.youtube.com/vi/CFZuFR2d3ko/maxresdefault.jpg",
                 category: "Food"
             },
             {
                 id: 6,
                 title: "Wildlife of Bhutan",
                 description: "Discover rare animals in their natural habitat",
-                youtubeId: "kffacxfA7G4",
+                youtubeId: "_8Hi2aohiBU",
                 duration: "5:45",
-                thumbnail: "https://img.youtube.com/vi/kffacxfA7G4/maxresdefault.jpg",
+                thumbnail: "https://img.youtube.com/vi/_8Hi2aohiBU/maxresdefault.jpg",
                 category: "Nature"
+            },
+            {
+                id: 7,
+                title: "Bhutanese Weaving Traditions",
+                description: "Traditional textile weaving techniques",
+                youtubeId: "KeKQq664ttc",
+                duration: "4:30",
+                thumbnail: "https://img.youtube.com/vi/KeKQq664ttc/maxresdefault.jpg",
+                category: "Culture"
+            },
+            {
+                id: 8,
+                title: "Paro Valley Sunrise",
+                description: "Morning views over the beautiful Paro Valley",
+                youtubeId: "XDNvxddmork",
+                duration: "3:15",
+                thumbnail: "https://img.youtube.com/vi/XDNvxddmork/maxresdefault.jpg",
+                category: "Nature"
+            },
+            {
+                id: 9,
+                title: "Bhutanese Archery Competition",
+                description: "Watch traditional Bhutanese archery, the national sport",
+                youtubeId: "nouzQz9MYnY",
+                duration: "4:10",
+                thumbnail: "https://img.youtube.com/vi/nouzQz9MYnY/maxresdefault.jpg",
+                category: "Sports"
             }
         ];
-
-        let visibleVideos = 4;
 
         function renderVideos() {
             videoGrid.innerHTML = '';
             
-            const videosToShow = videos.slice(0, visibleVideos);
-            
-            videosToShow.forEach(video => {
+            videos.forEach(video => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
                 card.innerHTML = `
-                    <div class="video-thumbnail" data-video-id="${video.youtubeId}">
+                    <div class="video-thumbnail" data-video-id="${video.id}">
                         <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
                         <div class="video-overlay"></div>
                         <button class="video-play-btn">
@@ -2972,20 +2615,21 @@
                 videoGrid.appendChild(card);
             });
             
-            loadMoreVideosBtn.style.display = visibleVideos >= videos.length ? 'none' : 'block';
-            
             // Add event listeners to play buttons
             document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
                 thumbnail.addEventListener('click', () => {
-                    const videoId = thumbnail.getAttribute('data-video-id');
-                    playVideo(videoId);
+                    const videoId = parseInt(thumbnail.getAttribute('data-video-id'));
+                    const video = videos.find(v => v.id === videoId);
+                    playVideo(video.youtubeId);
                 });
             });
         }
 
+        // UPDATED: Function to play video with autoplay enabled
         function playVideo(videoId) {
+            // Enable autoplay for all videos
             videoPlayer.innerHTML = `
-                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&controls=1&modestbranding=1" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                 </iframe>
@@ -3008,13 +2652,9 @@
             }
         });
 
-        loadMoreVideosBtn.addEventListener('click', () => {
-            visibleVideos += 4;
-            renderVideos();
-        });
-
         // ====== DESTINATIONS DATA ======
         const destinations = [
+            // Western Bhutan - 6 cards (updated from 2)
             {
                 id: 1, name: "Paro Taktsang (Tiger's Nest)", region: "west", location: "Paro, Western Bhutan",
                 desc: "Iconic monastery clinging to a cliffside 3,120 meters above sea level. Legend says Guru Rinpoche flew here on a tigress.",
@@ -3026,39 +2666,120 @@
                 image: "https://www.andbeyond.com/wp-content/uploads/sites/5/bhutan-punakha-dzong-river.jpg"
             },
             {
-                id: 3, name: "Thimphu Valley", region: "west", location: "Thimphu, Western Bhutan",
-                desc: "Bhutan's capital city nestled in a valley, blending traditional and modern architecture with vibrant culture.",
+                id: 3, name: "Thimphu Capital City", region: "west", location: "Thimphu, Western Bhutan",
+                desc: "Bhutan's capital nestled in a valley, home to Tashichho Dzong, Buddha Dordenma statue, and vibrant markets.",
                 image: "https://www.naturewings.com/images/bhutan/destination/thimphu-destination_1.jpeg"
             },
             {
-                id: 4, name: "Paro Valley", region: "west", location: "Paro, Western Bhutan",
-                desc: "Beautiful valley with traditional architecture, ancient temples, and stunning Himalayan backdrop.",
-                image: "https://www.alphonsostories.com/AlphonSoStoriesImages/BlogImage/For-the-Love-of-Paro-Valley-lg-cover.jpg"
+                id: 4, name: "Haa Valley", region: "west", location: "Haa, Western Bhutan",
+                desc: "Remote valley bordering Tibet, known for pristine forests, alpine flowers, and traditional Bhutanese culture.",
+                image: "https://www.drukheritage.com/wp-content/uploads/2021/05/Haa-Valley-Bhutan.jpg"
             },
             {
-                id: 5, name: "Phobjikha Valley", region: "central", location: "Wangdue Phodrang, Central Bhutan",
-                desc: "Glacial valley and winter home of endangered black-necked cranes, known for its pristine wetlands.",
-                image: "https://www.heavenlybhutan.com/wp-content/uploads/2022/07/Phobjikha.png"
+                id: 5, name: "Chele La Pass", region: "west", location: "Between Paro and Haa",
+                desc: "Highest motorable pass in Bhutan at 3,988 meters, offering panoramic views of Himalayan peaks including Jomolhari.",
+                image: "https://www.bhutaninbound.com/images/places/chele-la-pass-bhutan.jpg"
             },
             {
-                id: 6, name: "Punakha Valley", region: "central", location: "Punakha, Central Bhutan",
-                desc: "Fertile valley with temperate climate, known for rice farming and stunning views of the dzong.",
-                image: "https://www.andbeyond.com/wp-content/uploads/sites/5/punakha-valley-bhutan.jpg"
+                id: 6, name: "Rinpung Dzong", region: "west", location: "Paro, Western Bhutan",
+                desc: "Fortress of the Heap of Jewels, hosting the famous Paro Tshechu festival with massive thangka display.",
+                image: "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Rinpung-Dzong-Paro-Bhutan.jpg"
             },
+            
+            // Central Bhutan - 6 cards (updated from 1)
             {
                 id: 7, name: "Bumthang Valley", region: "central", location: "Bumthang, Central Bhutan",
-                desc: "Spiritual heartland with ancient temples, sacred sites, and beautiful valleys.",
+                desc: "Spiritual heartland with ancient temples, sacred sites, and beautiful valleys. Known as the 'Switzerland of Bhutan'.",
                 image: "https://www.esikkimtourism.in/wp-content/uploads/2019/10/bumthang-valley-bhutan-image.jpg"
             },
             {
                 id: 8, name: "Trongsa Dzong", region: "central", location: "Trongsa, Central Bhutan",
-                desc: "Largest dzong in Bhutan with strategic location overlooking the Mangde Chhu river.",
+                desc: "Largest dzong in Bhutan with strategic location overlooking the Mangde Chhu river. Ancestral home of the royal family.",
                 image: "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/The-beautiful-dzong-of-Trongsa-Bhuatan-1.jpg"
             },
             {
-                id: 9, name: "Dochula Pass", region: "central", location: "Between Thimphu and Punakha",
-                desc: "Mountain pass with 108 chortens (stupas) built by Her Majesty the Queen Mother.",
+                id: 9, name: "Phobjikha Valley", region: "central", location: "Wangdue Phodrang, Central Bhutan",
+                desc: "Glacial valley and winter home of endangered black-necked cranes, known for its pristine wetlands and hiking trails.",
+                image: "https://www.heavenlybhutan.com/wp-content/uploads/2022/07/Phobjikha.png"
+            },
+            {
+                id: 10, name: "Wangdue Phodrang", region: "central", location: "Wangdue Phodrang, Central Bhutan",
+                desc: "Town at the confluence of Punak Tsang Chhu and Dang Chhu rivers, known for bamboo crafts and slate mining.",
+                image: "https://www.bhutanmysticbliss.com/wp-content/uploads/2020/03/Wangdue-Phodrang-Dzong.jpg"
+            },
+            {
+                id: 11, name: "Dochula Pass", region: "central", location: "Between Thimphu and Punakha",
+                desc: "Mountain pass with 108 chortens (stupas) built by Her Majesty the Queen Mother, offering spectacular Himalayan views.",
                 image: "https://www.remotelands.com/storage/media/951/conversions/b170622007-banner-size.jpg"
+            },
+            {
+                id: 12, name: "Gangtey Monastery", region: "central", location: "Phobjikha Valley, Central Bhutan",
+                desc: "Important Nyingma monastery overlooking the Phobjikha Valley, center of the Pema Lingpa tradition.",
+                image: "https://www.drukasia.com/wp-content/uploads/2021/08/Gangtey-Monastery-Bhutan.jpg"
+            },
+            
+            // Eastern Bhutan - 6 cards (unchanged)
+            {
+                id: 13, name: "Trashigang Dzong", region: "east", location: "Trashigang, Eastern Bhutan",
+                desc: "Largest dzong in eastern Bhutan, perched on a high ridge overlooking the Drangme Chhu river valley.",
+                image: "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Trashigang-Dzong-Bhutan.jpg"
+            },
+            {
+                id: 14, name: "Mongar Town", region: "east", location: "Mongar, Eastern Bhutan",
+                desc: "Gateway to eastern Bhutan with winding roads, terraced fields, and vibrant local markets.",
+                image: "https://www.drukasia.com/wp-content/uploads/2021/08/Mongar-Bhutan.jpg"
+            },
+            {
+                id: 15, name: "Lhuentse Dzong", region: "east", location: "Lhuentse, Eastern Bhutan",
+                desc: "Birthplace of Bhutan's royal family, known for exquisite traditional weaving and remote beauty.",
+                image: "https://www.intoasia.com/media/images/bhutan/bhutan_lhuentse_dzong.jpg"
+            },
+            {
+                id: 16, name: "Trashi Yangtse", region: "east", location: "Trashi Yangtse, Eastern Bhutan",
+                desc: "Famous for traditional woodcraft and the stunning Chorten Kora stupa, influenced by Nepalese architecture.",
+                image: "https://www.bhutanmysticbliss.com/wp-content/uploads/2020/03/Trashi-Yangtse.jpg"
+            },
+            {
+                id: 17, name: "Merak & Sakteng", region: "east", location: "Eastern Bhutan",
+                desc: "Remote semi-nomadic villages of the Brokpa people, known for unique culture and yak-herding traditions.",
+                image: "https://www.tourandhike.com/wp-content/uploads/2022/03/Merak-Sakteng-Bhutan.jpg"
+            },
+            {
+                id: 18, name: "Radhi Village", region: "east", location: "Trashigang, Eastern Bhutan",
+                desc: "Rice bowl of eastern Bhutan, famous for its beautiful women weavers producing high-quality raw silk.",
+                image: "https://www.bhutaninbound.com/images/places/radhi-village-bhutan.jpg"
+            },
+            
+            // Southern Bhutan - 6 cards (unchanged)
+            {
+                id: 19, name: "Royal Manas National Park", region: "south", location: "Southern Bhutan",
+                desc: "Bhutan's oldest national park, UNESCO World Heritage site, home to tigers, elephants, and golden langurs.",
+                image: "https://www.wildlifeplanet.com/wp-content/uploads/2021/08/Royal-Manas-National-Park-Bhutan.jpg"
+            },
+            {
+                id: 20, name: "Phuentsholing Town", region: "south", location: "Southern Bhutan",
+                desc: "Border town and gateway to Bhutan from India, blending Bhutanese and Indian cultures and markets.",
+                image: "https://www.bhutanbestinboundtour.com/images/places/phuentsholing-town.jpg"
+            },
+            {
+                id: 21, name: "Zhemgang", region: "south", location: "Southern Bhutan",
+                desc: "Biodiversity hotspot with tropical forests, home to rare birds, golden langurs, and diverse flora.",
+                image: "https://www.kingdomofbhutan.com/wp-content/uploads/2020/05/Zhemgang-Bhutan.jpg"
+            },
+            {
+                id: 22, name: "Gelephu", region: "south", location: "Southern Bhutan",
+                desc: "Southern town near Indian border, known for its hot springs and strategic trade location.",
+                image: "https://www.bhutanvisa.com/blog/wp-content/uploads/2021/06/Gelephu-Bhutan.jpg"
+            },
+            {
+                id: 23, name: "Sarpang", region: "south", location: "Southern Bhutan",
+                desc: "Agricultural heartland with orange orchards, cardamom plantations, and diverse wildlife.",
+                image: "https://www.bhutantravelbureau.com/images/destinations/sarpang-bhutan.jpg"
+            },
+            {
+                id: 24, name: "Samdrup Jongkhar", region: "south", location: "Southern Bhutan",
+                desc: "Eastern border town with India, important trade hub and gateway to eastern Bhutan.",
+                image: "https://www.bhutantourandtravel.com/images/places/samdrup-jongkhar.jpg"
             }
         ];
 
@@ -3119,6 +2840,13 @@
                 desc: "Experience Bhutan's vibrant festivals with front-row seats to mask dances, religious ceremonies, and cultural performances (seasonal availability).",
                 image: "https://www.remotelands.com/storage/media/951/conversions/b170622007-banner-size.jpg",
                 badge: "Festival"
+            },
+            {
+                id: 9, title: "Eastern Bhutan Exploration", duration: "10 Days / 9 Nights",
+                themes: ["Culture", "Adventure", "Nature"], price: 3850,
+                desc: "Journey to remote eastern Bhutan to explore Trashigang, Mongar, and Lhuentse dzongs, experiencing authentic Bhutanese culture off the beaten path.",
+                image: "https://www.bhutanmysticbliss.com/wp-content/uploads/2020/03/Trashi-Yangtse.jpg",
+                badge: "Exploration"
             }
         ];
 
@@ -3147,16 +2875,11 @@
             
             // Initialize destination tabs
             initDestinationTabs();
-            
-            // Initialize show more buttons
-            initShowMoreButtons();
         }
 
         // ====== DESTINATIONS FUNCTIONS ======
         const destinationsGrid = document.getElementById('destinationsGrid');
         const tabButtons = document.querySelectorAll('.tab-btn');
-        const showMoreDestinationsBtn = document.getElementById('showMoreDestinations');
-        let showingAllDestinations = false;
 
         function renderDestinations(region = 'all') {
             destinationsGrid.innerHTML = '';
@@ -3165,11 +2888,7 @@
                 ? destinations
                 : destinations.filter(dest => dest.region === region);
 
-            const destinationsToShow = showingAllDestinations
-                ? filteredDestinations
-                : filteredDestinations.slice(0, 6);
-
-            destinationsToShow.forEach(destination => {
+            filteredDestinations.forEach(destination => {
                 const card = document.createElement('div');
                 card.className = 'destination-card';
                 card.innerHTML = `
@@ -3187,37 +2906,34 @@
                             <span>${destination.location}</span>
                         </div>
                         <p class="destination-desc">${destination.desc}</p>
-                        <a href="#contact" class="btn btn-outline">
-                            <i class="fas fa-calendar-alt"></i> Plan Visit
-                        </a>
+                        <button class="btn btn-outline book-destination-btn" data-destination-id="${destination.id}">
+                            <i class="fas fa-calendar-alt"></i> Book Visit
+                        </button>
                     </div>
                 `;
                 destinationsGrid.appendChild(card);
             });
 
-            if (filteredDestinations.length > 6) {
-                showMoreDestinationsBtn.style.display = 'block';
-                showMoreDestinationsBtn.innerHTML = showingAllDestinations
-                    ? '<i class="fas fa-minus"></i> Show Less Destinations'
-                    : '<i class="fas fa-plus"></i> Show More Destinations';
-            } else {
-                showMoreDestinationsBtn.style.display = 'none';
-            }
+            // Add event listeners to destination book buttons
+            document.querySelectorAll('.book-destination-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const destinationId = parseInt(button.getAttribute('data-destination-id'));
+                    const destination = destinations.find(d => d.id === destinationId);
+                    if (destination) {
+                        showBookingModal(0); // Use 0 for generic booking
+                    }
+                });
+            });
         }
 
         // ====== PACKAGES FUNCTIONS ======
         const packagesGrid = document.getElementById('packagesGrid');
-        const showMorePackagesBtn = document.getElementById('showMorePackages');
-        let showingAllPackages = false;
 
         function renderPackages() {
             packagesGrid.innerHTML = '';
 
-            const packagesToShow = showingAllPackages
-                ? packages
-                : packages.slice(0, 6);
-
-            packagesToShow.forEach(pkg => {
+            packages.forEach(pkg => {
                 const card = document.createElement('div');
                 card.className = 'package-card';
                 card.innerHTML = `
@@ -3245,14 +2961,13 @@
                 packagesGrid.appendChild(card);
             });
 
-            if (packages.length > 6) {
-                showMorePackagesBtn.style.display = 'block';
-                showMorePackagesBtn.innerHTML = showingAllPackages
-                    ? '<i class="fas fa-minus"></i> Show Less Packages'
-                    : '<i class="fas fa-plus"></i> Show More Packages';
-            } else {
-                showMorePackagesBtn.style.display = 'none';
-            }
+            // Add event listeners to package book buttons
+            document.querySelectorAll('.book-package-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const packageId = parseInt(button.getAttribute('data-package-id'));
+                    showBookingModal(packageId);
+                });
+            });
         }
 
         // ====== UTILITY FUNCTIONS ======
@@ -3371,26 +3086,14 @@ ${name}
                 button.addEventListener('click', () => {
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-                    showingAllDestinations = false;
                     const region = button.getAttribute('data-region');
                     renderDestinations(region);
                 });
             });
         }
 
-        function initShowMoreButtons() {
-            showMoreDestinationsBtn.addEventListener('click', () => {
-                showingAllDestinations = !showingAllDestinations;
-                const activeTab = document.querySelector('.tab-btn.active');
-                const region = activeTab ? activeTab.getAttribute('data-region') : 'all';
-                renderDestinations(region);
-            });
-
-            showMorePackagesBtn.addEventListener('click', () => {
-                showingAllPackages = !showingAllPackages;
-                renderPackages();
-            });
-        }
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', initializeAllComponents);
     </script>
 </body>
 </html>
